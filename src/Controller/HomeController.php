@@ -9,9 +9,15 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class HomeController extends AbstractController{
     /**
-     * @Route("/prueba", name="prueba")
+     * @Route("/home", name="home")
      */
     public function HomeAction(Request $request){
         return $this->render('base.html.twig');
+    }
+    /**
+     * @Route("/login",name="login")
+     */
+    public function pruebaAction(Request $request){
+        return $this->redirectToRoute('home');
     }
 }
