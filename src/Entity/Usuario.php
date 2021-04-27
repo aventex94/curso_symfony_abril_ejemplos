@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Usuario
  *
  * @ORM\Table(name="usuario")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\UsuarioRepository")
  */
 class Usuario
 {
@@ -48,6 +48,22 @@ class Usuario
      * @ORM\Column(name="password", type="string", length=255, nullable=false)
      */
     private $password;
+
+
+    public function __construct(
+        String $nombre,
+        String $apellido,
+        String $email,
+        String $password
+        
+    ){
+        $this->nombre = $nombre;
+        $this->apellido = $apellido;
+        $this->email = $email;
+        $this->password = $password;    
+    }
+
+
 
     public function getId(): ?int
     {

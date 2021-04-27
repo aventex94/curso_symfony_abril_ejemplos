@@ -7,4 +7,24 @@
         <input type="password" id="password" name="password">
         <input type="submit" value="Ingresar">
     </form>
+
+
+
+
+    {% for i in 0..19  %}
+    <div>
+     <h1>{{  'welcome'|upper  }}</h1> 
+     {% apply upper %}
+        This text becomes uppercase
+    {% endapply %}
+    </div>
+    {% endfor %}
+
+
+
+
+
+
+
+
 {% endblock %}
