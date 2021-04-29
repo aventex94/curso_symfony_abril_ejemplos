@@ -19,9 +19,27 @@ class UserController extends AbstractController{
      */
     public function altaUser(Request $request){
 
+        
+        //$nombre = $request->query->get("nombre");
+        //$nombre = $request->request->get("nombre");
+        
+        
+        //$email = $paramFetcher->get('email');
+        
         $em = $this->getDoctrine()->getManager();
+        try{
+            $usuario =  new Usuario("Matias","Miletich","matiasmiletich.informatica@gmail.com","42467766");
+        
+            $em->persist($usuario);
+            
+            $em->flush();       
+            
 
+        }catch(\Exception $e){
+           
+        }
 
+       
         $usuarios = $em->getRepository(Usuario::class)->findAll();
         
         
@@ -40,26 +58,43 @@ class UserController extends AbstractController{
     public function listUser(Request $request){
 
         $em = $this->getDoctrine()->getManager();
-        
-        
+
         $listaUsuarios = $em->getRepository(Usuario::class)->findAll(); //Me traigo todos los usuarios
+        
+        //LISTAR TODOS USUARIO
+
+
         $usuario = $em->getRepository(Usuario::class)->findByNombre('Carlin'); //Me traigo al usuario con nombre Carlin
         
+        
+
         return $this->render('user/list_user.html.twig',["users" => $listaUsuarios, "usuariologueado" => $usuario[0]]);
 
 
         
     }
-
-    //
     /**
-     * @Route("/habilitar/{user}", name="user_habilitar")
+     * @Route("/update",name="update_user")
      */
-    /*
-    public function habilitar(Request $request, Usuario $user){
-        //Habilitamos al usuario;
-        $user->habilitar();
-        return $user;
-    }*/
+    public function updateUser(Request $request){
+        
+        $em = $this->getDoctrine()->getManager();
+        $email = "matias@hotmail.com";
+        $usuario = $em->getRepository(Usuario::class)->findOneBy(["id" => 1]);
+        $usuario->setNombre("NOMBRE NUEVO");
+        $usuario->setEmail($email);
+        $em->flush();
+        
+        return "Update User";
+
+    }
+
+
+
+
+    
+
+
+    
 
 }

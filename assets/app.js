@@ -12,7 +12,9 @@ import './styles/app.css';
 import './bootstrap';
 
 
+var $ = require('jquery');
 
-
-
+$(document).ready(function() {
+        $('body').prepend('<h1>HOLAAAAAAAAA</h1>');
+});
 

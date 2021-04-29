@@ -14,13 +14,19 @@ Class UsuarioRepository extends ServiceEntityRepository{
     }
 
     public function findByNombre($nombre){
-        
+        //ESTO ES UN DQL
         $qb = $this->getEntityManager()->createQueryBuilder()
             ->select('u')
             ->from('App:Usuario', 'u')
             ->where('u.nombre = :nombre')
             ->setParameter('nombre', $nombre);
         return $qb->getQuery()->getResult(); 
+
+        //ESTA ES LA FORMA DE EJECUTAR UN SQL NORMAL
+        /* $sql = "SELECT *FSDF";
+        $query = $this->getEntityManager()->createQuery($sql);
+        $result = $query->getResult(); */
         
     }
+    
 }
